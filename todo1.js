@@ -24,7 +24,7 @@ function saveTodos() {
 }
 
 // ---------- Show todos on screen ----------
-function render() {
+render = () => {
   list.innerHTML = "";
 
   for (let i = 0; i < todos.length; i++) {
@@ -50,19 +50,25 @@ function render() {
 }
 
 // ---------- Add / delete ----------
-function addTodo(text) {
+addTodo = (text) => {
+  if (todos.includes(text)) {
+    alert("Todo already exists!");
+    return;
+  }
   todos.push(text);
   saveTodos();
   render();
 }
 
-function deleteTodo(index) {
+
+
+deleteTodo = (index) => {
   todos.splice(index, 1); // remove 1 item at this position
   saveTodos();
   render();
 }
 
-function deleteall() {
+deleteall = () => {
   todos = [];
   saveTodos();
   render();
@@ -71,7 +77,7 @@ function deleteall() {
 
 
 // ---------- Events ----------
-form.onsubmit = function (event) {
+form.onsubmit = (event) => {
   event.preventDefault(); // stop page reload
   const text = input.value.trim();
   if (text === "") {
